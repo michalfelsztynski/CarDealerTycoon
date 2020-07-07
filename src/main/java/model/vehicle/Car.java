@@ -3,15 +3,24 @@ package model.vehicle;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.HashSet;
 import java.util.Set;
 
 import static model.vehicle.VehicleUtil.*;
 
-
+@Entity
 @Getter
 @Setter
 public class Car extends BaseVehicle {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
 
     private CarCondition carCondition;
 

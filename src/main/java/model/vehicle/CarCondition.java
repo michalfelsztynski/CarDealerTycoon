@@ -2,14 +2,24 @@ package model.vehicle;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.util.Random;
 
 import static model.vehicle.VehicleUtil.rand;
 
 @Getter
 @Setter
+@Entity
 public class CarCondition extends BaseCondition {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private boolean body;
     private boolean interior;
 
