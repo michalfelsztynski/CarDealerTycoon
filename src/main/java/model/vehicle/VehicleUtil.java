@@ -42,7 +42,7 @@ public class VehicleUtil {
         }
         if (baseVehicle instanceof Motorcycle) {
             Motorcycle moto = (Motorcycle) baseVehicle;
-            baseVehicle.setValue(calculateValue(moto.getCondition(), moto.getMileage(), moto.getBaseValue()));
+            baseVehicle.setValue(calculateValue(moto.getMotorcycleCondition(), moto.getMileage(), moto.getBaseValue()));
         }
     }
 

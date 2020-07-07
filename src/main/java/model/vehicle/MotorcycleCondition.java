@@ -5,6 +5,8 @@ import lombok.Setter;
 
 import java.util.Random;
 
+import static model.vehicle.VehicleUtil.rand;
+
 @Getter
 @Setter
 public class MotorcycleCondition extends BaseCondition {
@@ -23,5 +25,36 @@ public class MotorcycleCondition extends BaseCondition {
 
     public static MotorcycleCondition perfect() {
         return new MotorcycleCondition(true, true, true);
+    }
+
+
+    public void randomlyBreak(int bound) {
+        int rand = rand(bound);
+        int randPart = rand(3);
+
+        if (rand == 2 && anyPartToBreak()) {
+            boolean searchingPartToBreak = true;
+            do {
+                switch (randPart) {
+                            case 0:
+                        if (this.isBrakes()) this.setBrakes(false);
+                        searchingPartToBreak = false;
+                        break;
+                    case 1:
+                        if (this.isEngine()) this.setEngine(false);
+                        searchingPartToBreak = false;
+                        break;
+                    case 2:
+                        if (this.isGearbox()) this.setGearbox(false);
+                        searchingPartToBreak = false;
+                        break;
+                    default:
+                }
+            } while (searchingPartToBreak);
+        }
+    }
+
+    private boolean anyPartToBreak() {
+        return anyPartToBreak(this);
     }
 }

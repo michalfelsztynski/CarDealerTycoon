@@ -21,7 +21,7 @@ public abstract class BaseWorkshop implements Reperable {
         if (bv instanceof Car) {
             cost = util.carCalculatedCost(((Car) bv).getCarCondition(), bv.getModel().segment, commissionRatio);
         } else if (bv instanceof Motorcycle) {
-            cost = util.motorcycleCalculatedCost(((Motorcycle) bv).getCondition(), bv.getModel().segment, commissionRatio);
+            cost = util.motorcycleCalculatedCost(((Motorcycle) bv).getMotorcycleCondition(), bv.getModel().segment, commissionRatio);
         }
         return cost;
     }
@@ -35,16 +35,25 @@ public abstract class BaseWorkshop implements Reperable {
         }
     }
 
-    void doRepair(Player player, BaseVehicle bv, double cost){
+    void doRepair(Player player, BaseVehicle bv, double cost) {
         if (player.getCash() > cost) {
             player.setCash(player.getCash() - cost);
             if (bv instanceof Car) {
                 ((Car) bv).setCarCondition(CarCondition.perfect());
             }
             if (bv instanceof Motorcycle) {
-                ((Motorcycle) bv).setCondition(MotorcycleCondition.perfect());
+                ((Motorcycle) bv).setMotorcycleCondition(MotorcycleCondition.perfect());
             }
+        } else {
+            System.out.println("no enought cash");
         }
-        System.out.println("no enought cash");
+    }
+
+    void getMonayForNothing(Player player, double cost) {
+        if (player.getCash() > cost) {
+            player.setCash(player.getCash() - cost);
+        } else {
+            System.out.println("no enought cash");
+        }
     }
 }

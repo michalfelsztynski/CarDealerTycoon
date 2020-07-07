@@ -10,15 +10,15 @@ public class MarianAuto extends BaseWorkshop {
 
     @Override
     public void repair(BaseVehicle bv, Player player) {
+        double cost = calculateCost(bv);
+
         try {
             super.failure(FAIL_BOUND);
+            super.doRepair(player, bv, cost);
         } catch (RepairException e) {
-            e.printStackTrace();
+            getMonayForNothing(player, cost);
         }
-        calculateCost(bv);
-
     }
-
 
     public double calculateCost(BaseVehicle bv) {
         return super.calculateCost(bv, COMMISSION_RATIO);

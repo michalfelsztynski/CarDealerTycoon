@@ -11,11 +11,11 @@ import static model.vehicle.VehicleUtil.*;
 @Getter
 @Setter
 public class Motorcycle extends BaseVehicle {
-    private MotorcycleCondition condition;
+    private MotorcycleCondition motorcycleCondition;
 
-    public Motorcycle(VehicleModelSetup model, Double value, Integer mileage, Integer loadCapacity, MotorcycleCondition condition) {
+    public Motorcycle(VehicleModelSetup model, Double value, Integer mileage, Integer loadCapacity, MotorcycleCondition motorcycleCondition) {
         super(model, value, mileage, loadCapacity);
-        this.condition = condition;
+        this.motorcycleCondition = motorcycleCondition;
     }
 
     public static Set<BaseVehicle> getRandomMotorcycles(int numberOfMotorcycles) {
